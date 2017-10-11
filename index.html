@@ -1,0 +1,96 @@
+<html>
+<head><title>Weather</title>
+<script src="angular.min.js"></script>
+<script >var app=angular.module("myapp",["pubnub.angular.service"]);
+app.controller("mycont",function($scope,$http,Pubnub){
+	$scope.change=function(){$scope.sayIt = function (re) {
+      window.speechSynthesis.speak(new SpeechSynthesisUtterance("hey buddy!"+re+" in that location, Have a good day"));
+  };
+	var loc=$scope.str;	
+	var url=$scope.str;
+  $http({method:"GET",url:"https://maps.googleapis.com/maps/api/geocode/json?address="+url})
+    .then(function(response) {
+      $scope.data1 = response.data;
+	});
+	$http.get("http://api.openweathermap.org/data/2.5/find?q="+loc+"&appid=f18817a8b4022410d79d5adbd5d89746").then(
+	function(response){
+		$scope.data=response.data;
+  
+	}
+	);
+	}
+	
+});
+</script>
+<script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+<script src="https://cdn.pubnub.com/pubnub-3.15.1.min.js"></script>
+  <script src="https://cdn.pubnub.com/sdk/pubnub-angular/pubnub-angular-3.2.1.min.js"></script>
+</head><body ng-app="myapp" ng-controller="mycont" ng-init="fg='hello'"><a href="logout.php">Logout</a>
+<input type="text" ng-model="str" ng-change="change()"></br>
+</br>
+<span ng-repeat="i in data.list"><table border="1"><tr>
+<th>Temprature</th><th>Pressure</th>
+<th>Humidity</th><th>Temp(Min)</th>
+<th>Temp(Max)</th><th>Sea Level</th>
+<th>Ground Level</th></tr><tr>
+<td ng-repeat="y in i.main">{{y}}</td></tr></table></br></span>
+
+<span ng-repeat="i in data.list"><table border="1"><tr>
+<th>Speed</th><th>Deg</th></tr><tr>
+<td ng-repeat="y in i.wind">{{y}}</td></tr></table></span>
+
+<span ng-repeat="i in data.list">
+<h5 ng-repeat="x in i.weather" ng-model="fg=x.description">
+
+<input type="button" ng-click="sayIt(fg)" value="whats the weather!" />
+</br></h5></span>
+</br><p id="demo"></p>
+  <table border="1"><tr><th>PLACE</th><th>NORTH-EAST</th><th>SOUTH-WEST</th></tr>
+  <tr><td ng-repeat="i in data1.results">{{i.formatted_address}}</td><td><table><tr>
+		<td ng-repeat="i in data1.results">Lat:{{i.geometry.bounds.northeast.lat}}</td></tr><tr>
+		<td ng-repeat="i in data1.results">Long:{{i.geometry.bounds.northeast.lng}}</td></tr></table></td><td><table><tr>
+		<td ng-repeat="i in data1.results">Lat:{{i.geometry.bounds.southwest.lng}}</td></tr><tr>
+		<td ng-repeat="i in data1.results">Long:{{i.geometry.bounds.southwest.lng}}</td></tr></table></td></tr>
+ </table>
+<button onclick="getLocation()">Find My Place</button>
+
+<div id="mapholder"></div>
+
+<script>
+var x = document.getElementById("demo");
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+    var latlon = position.coords.latitude + "," + position.coords.longitude;
+    var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="
+    +latlon+"&zoom=14&size=400x300&key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU";
+    document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
+	
+}
+function showError(error) {
+    switch(error.code) {
+        case error.PERMISSION_DENIED:
+            x.innerHTML = "User denied the request for Geolocation."
+            break;
+        case error.POSITION_UNAVAILABLE:
+            x.innerHTML = "Location information is unavailable."
+            break;
+        case error.TIMEOUT:
+            x.innerHTML = "The request to get user location timed out."
+            break;
+        case error.UNKNOWN_ERROR:
+            x.innerHTML = "An unknown error occurred."
+            break;
+    }
+}
+</script>
+
+</body>
+</html>
