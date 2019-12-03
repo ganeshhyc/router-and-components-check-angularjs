@@ -1,0 +1,103 @@
+<navbar></navbar><br><br>
+<div class="container" ng-controller="landingCtrl">
+    <div class="row">
+        <div class="col-3">
+            <div class="list-group" id="list-tab" role="tablist">
+            <a  style="cursor:pointer" class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" data-target="#list-home" role="tab" ng-click="setCountry('india')" aria-controls="home">India</a>
+            <a  style="cursor:pointer" class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" data-target="#list-profile" role="tab"  ng-click="setCountry('pakistan')" aria-controls="profile">Pakistan</a>
+            <a  style="cursor:pointer" class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" data-target="#list-messages" role="tab"  ng-click="setCountry('canada')" aria-controls="messages">Canada</a>
+            <a  style="cursor:pointer" class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" data-target="#list-settings" role="tab"  ng-click="setCountry('iran')" aria-controls="settings">Iran</a>
+            <a  style="cursor:pointer" class="list-group-item list-group-item-action" id="list-country5-list" data-toggle="list" data-target="#list-country5" role="tab"  ng-click="setCountry('russia')" aria-controls="country5">Russia</a>
+            </div>
+        </div>
+        <div class="col-9" style="overflow: scroll;height:640px;">
+            <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+                <div ng-repeat="_city in countryList.india">
+                    <div class="card">
+                        <h5 class="card-header">
+                            <a style="cursor:pointer" data-toggle="collapse" ng-click="checkW(_city);" data-target="#collapse{{_city}}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                {{_city}}
+                            </a>
+                        </h5>
+                        <div  class="card-body collapse" id="collapse{{_city}}">
+                            <!-- <div ng-repeat="list in city[_city].list"> -->
+                                <h5 class="card-title">Weather : {{city[_city].list[0].weather[0].main}} <img ng-src="http://openweathermap.org/img/wn/{{city[_city].list[0].weather[0].icon}}@2x.png" height="40px"></h5>
+                                <p class="card-text">Temperature : {{(city[_city].list[0].main.temp-273.15) | number:1}}℃ &nbsp; Wind Speed: {{city[_city].list[0].wind.speed | number:1}}</p>
+                            <!-- </div> -->
+                        </div>
+                    </div><br>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+                <div ng-repeat="_city in countryList.pakistan">
+                    <div class="card">
+                        <h5 class="card-header">
+                            <a style="cursor:pointer" data-toggle="collapse" ng-click="checkW(_city);" data-target="#collapse{{_city}}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                {{_city}}
+                            </a>
+                        </h5>
+                        <div  class="card-body collapse" id="collapse{{_city}}">
+                            <!-- <div ng-repeat="list in city[_city].list"> -->
+                                <h5 class="card-title">Weather : {{city[_city].list[0].weather[0].main}} <img ng-src="http://openweathermap.org/img/wn/{{city[_city].list[0].weather[0].icon}}@2x.png" height="40px"></h5>
+                                <p class="card-text">Temperature : {{(city[_city].list[0].main.temp-273.15) | number:1}}℃ &nbsp; Wind Speed: {{city[_city].list[0].wind.speed | number:1}}</p>
+                            <!-- </div> -->
+                        </div>
+                    </div><br>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
+                <div ng-repeat="_city in countryList.canada">
+                    <div class="card">
+                        <h5 class="card-header">
+                            <a style="cursor:pointer" data-toggle="collapse" ng-click="checkW(_city);" data-target="#collapse{{_city}}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                {{_city}}
+                            </a>
+                        </h5>
+                        <div  class="card-body collapse" id="collapse{{_city}}">
+                            <!-- <div ng-repeat="list in city[_city].list"> -->
+                                <h5 class="card-title">Weather : {{city[_city].list[0].weather[0].main}} <img ng-src="http://openweathermap.org/img/wn/{{city[_city].list[0].weather[0].icon}}@2x.png" height="40px"></h5>
+                                <p class="card-text">Temperature : {{(city[_city].list[0].main.temp-273.15) | number:1}}℃ &nbsp; Wind Speed: {{city[_city].list[0].wind.speed | number:1}}</p>
+                            <!-- </div> -->
+                        </div>
+                    </div><br>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
+                <div ng-repeat="_city in countryList.iran">
+                    <div class="card">
+                        <h5 class="card-header">
+                            <a style="cursor:pointer" data-toggle="collapse" ng-click="checkW(_city);" data-target="#collapse{{_city}}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                {{_city}}
+                            </a>
+                        </h5>
+                        <div  class="card-body collapse" id="collapse{{_city}}">
+                            <!-- <div ng-repeat="list in city[_city].list"> -->
+                                <h5 class="card-title">Weather : {{city[_city].list[0].weather[0].main}} <img ng-src="http://openweathermap.org/img/wn/{{city[_city].list[0].weather[0].icon}}@2x.png" height="40px"></h5>
+                                <p class="card-text">Temperature : {{(city[_city].list[0].main.temp-273.15) | number:1}}℃ &nbsp; Wind Speed: {{city[_city].list[0].wind.speed | number:1}}</p>
+                            <!-- </div> -->
+                        </div>
+                    </div><br>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="list-country5" role="tabpanel" aria-labelledby="list-country5-list">
+                <div ng-repeat="_city in countryList.russia">
+                    <div class="card">
+                        <h5 class="card-header">
+                            <a style="cursor:pointer" data-toggle="collapse" ng-click="checkW(_city);" data-target="#collapse{{_city}}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                {{_city}}
+                            </a>
+                        </h5>
+                        <div  class="card-body collapse" id="collapse{{_city}}">
+                            <!-- <div ng-repeat="list in city[_city].list"> -->
+                                <h5 class="card-title">Weather : {{city[_city].list[0].weather[0].main}} <img ng-src="http://openweathermap.org/img/wn/{{city[_city].list[0].weather[0].icon}}@2x.png" height="40px"></h5>
+                                <p class="card-text">Temperature : {{(city[_city].list[0].main.temp-273.15) | number:1}}℃ &nbsp; Wind Speed: {{city[_city].list[0].wind.speed | number:1}}</p>
+                            <!-- </div> -->
+                        </div>
+                    </div><br>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>

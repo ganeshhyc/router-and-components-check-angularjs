@@ -1,0 +1,20 @@
+::-webkit-scrollbar { 
+    display: none; 
+}
+.btn-circle.btn { 
+    width: 40px; 
+    height: 40px; 
+    padding: 7px 10px; 
+    border-radius: 25px; 
+    font-size: 18px; 
+    /* text-align: center;  */
+} 
+.f-r {
+    float: right !important;
+}
+.navbar {
+    box-shadow:  0 3px 5px 1px rgba(0,0,0,0.2);
+}
+.card {
+    box-shadow: 0 3px 5px 1px rgba(0,0,0,0.2)
+}
